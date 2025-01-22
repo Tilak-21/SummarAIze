@@ -6,3 +6,17 @@ body {
     background-position: center;
     height: 100vh;
 }
+.flex-container{
+    display: flex;
+    justify-content: flex-end;
+    height: 100vh;
+}
+
+.prompt-box {
+    flex: 0 0 40%;
+    background-color: rgb(202, 235, 236, 0.5) !important;
+    border: rgb(148, 213, 215) 1px solid !important;
+    border-radius: 50px;
+    padding: 2rem;
+    margin: 2rem;
+}
