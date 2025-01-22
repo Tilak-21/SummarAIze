@@ -1,0 +1,8 @@
+body {
+    margin: 0;
+    background-image: url('https://m.media-amazon.com/images/G/01/music-find/4723/2020_GL_LP_Thumbnails_Playlists_2016x288.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
