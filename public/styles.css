@@ -4,12 +4,13 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 100vh;
+    height: max-content;
+    min-height: 90vh;
 }
 .flex-container{
     display: flex;
     justify-content: flex-end;
-    height: 100vh;
+    height: max-content;
 }
 
 .prompt-box {
@@ -19,6 +20,8 @@ body {
     border-radius: 50px;
     padding: 2rem;
     margin: 2rem;
+    height: max-content;
+    min-height: 95vh;
   
 }
 #textbox {
