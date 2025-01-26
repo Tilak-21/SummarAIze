@@ -7,10 +7,47 @@ body {
     height: max-content;
     min-height: 90vh;
 }
+
+/* Used to center the rubric and upload buttons in the center alongside the prompt box */
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .flex-container{
     display: flex;
     justify-content: flex-end;
     height: max-content;
+}
+
+/* Container for files, arranged in a column layout */
+#file-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    grid-gap: 10px;
+}
+
+/* Form styling for uploading files */
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    grid-gap: 20px;
+}
+
+/* Styling for buttons inside the upload form */
+.upload-form button {
+    padding: 6px;
+    width: 100px;
+    border-radius: 5px;
+}
+
+/* Title styling for the upload form */
+.upload-form-title {
+  margin: 5px 0;
 }
 
 .prompt-box {

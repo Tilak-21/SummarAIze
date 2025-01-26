@@ -11,3 +11,13 @@ const text = aiButton.addEventListener('click', () => {
       outputArea.appendChild(newParagraph);
 })
 
+document.getElementById('rubricButton').addEventListener('click', function() {
+      document.getElementById('rubric-container').style.display = 'block';
+      document.getElementById('file-container').style.display = 'none';
+  });
+  
+  document.getElementById('fileButton').addEventListener('click', function() {
+      document.getElementById('rubric-container').style.display = 'none';
+      document.getElementById('file-container').style.display = 'flex';
+  });
+
