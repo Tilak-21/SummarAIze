@@ -21,3 +21,7 @@ document.getElementById('rubricButton').addEventListener('click', function() {
       document.getElementById('file-container').style.display = 'flex';
   });
 
+//grab the text from the rubric tab's textbox
+aiButton.addEventListener('click', function () {
+    let rubric = document.getElementById('textbox').value;
+  });
