@@ -1,1 +1,2 @@
 # summarAIze
+summarAIze is a free open-source grading assistance tool designed to assist the instructors of Green River College in evaluation of student responses to quizzes posted on Canvas. It allows an instructor to define a custom grading rubric and upload quiz responses to an AI, which will then grade them based on the custom rubric and return its evaluation to the instructor for review.
