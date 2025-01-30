@@ -4,9 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("analyze-data-btn").addEventListener("click", sendToAI);
 });
 
-/**
- * Calls the backend to process Canvas data and remove PII.
- */
 async function processData() {
     try {
         const response = await fetch("/api/process-data", {
@@ -15,126 +12,23 @@ async function processData() {
         });
 
         const result = await response.json();
-        document.getElementById("output").innerText = result.message;
+        document.getElementById("output1").innerText = result.message;
     } catch (error) {
-        document.getElementById("output").innerText = "Error processing data!";
+        document.getElementById("output1").innerText = "Error processing data!";
         console.error("Error:", error);
     }
-}
-
-/**
- * Fetches processed data (without PII) from the backend.
- */
-async function fetchProcessedData() {
-    try {
-        const response = await fetch("/api/processed-data");
-        const data = await response.json();
-        document.getElementById("output").innerText = JSON.stringify(data, null, 2);
-    } catch (error) {
-        document.getElementById("output").innerText = "Error fetching processed data!";
-        console.error("Error:", error);
-    }
-}
-
-/**
- * Sends processed data to AI for further analysis.
- */
-async function sendToAI() {
-    try {
-        // First, get the processed data
-        const processedResponse = await fetch("/api/processed-data");
-        const processedData = await processedResponse.json();
-
-        // Send the processed data to AI
-        const aiResponse = await fetch("/api/analyze", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(processedData)
-        });
-
-        const result = await aiResponse.json();
-        document.getElementById("output").innerText = "AI Analysis Result: " + JSON.stringify(result, null, 2);
-    } catch (error) {
-        document.getElementById("output").innerText = "Error analyzing data!";
-        console.error("Error:", error);
-    }
-}
-
-const promptBox = document.getElementById('prompt-box');
-const aiButton = document.getElementById('ai-button');
-const outputArea = document.getElementById('outputArea');
-
-const text = aiButton.addEventListener('click', () => {
-
-      // Create a new paragraph element
-      const newParagraph = document.createElement('p');
-      newParagraph.textContent = "Welcome to summarAIze, a tool designed to provide real-time feedback for students. We are currently in the development phase and appreciate your feedback."
-      // Append the new paragraph to the output area
-      outputArea.appendChild(newParagraph);
-})
-
-document.getElementById('rubricButton').addEventListener('click', function() {
-      document.getElementById('rubric-container').style.display = 'block';
-      document.getElementById('file-container').style.display = 'none';
-  });
-  
-  document.getElementById('fileButton').addEventListener('click', function() {
-      document.getElementById('rubric-container').style.display = 'none';
-      document.getElementById('file-container').style.display = 'flex';
-  });
-
-//grab the text from the rubric tab's textbox
-aiButton.addEventListener('click', function () {
-    let rubric = document.getElementById('textbox').value;
-  });
-
-async function fetchProcessedData() {
-    const response = await fetch("http://localhost:5000/api/processed-data");
-    const data = await response.json();
-    document.getElementById("output").textContent = JSON.stringify(data, null, 2);
-}
-
-async function sendToAI() {
-    const response = await fetch("http://localhost:5000/api/processed-data");
-    const processedData = await response.json();
-
-    const aiResponse = await fetch("http://localhost:5000/api/analyze", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(processedData)
-    });
-
-    const result = await aiResponse.json();
-    document.getElementById("output").textContent = "AI Analysis Result: " + JSON.stringify(result, null, 2);
-}
-
-async function processData() {
-    const response = await fetch("/api/process-data", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" }
-    });
-
-    const result = await response.json();
-    document.getElementById("output1").innerText = result.message;
 }
 
 async function fetchProcessedData() {
     try {
         const response = await fetch("/api/processed-data");
         const data = await response.json();
+        const students = Array.isArray(data.quiz_submissions) ? data.quiz_submissions : Object.values(data.quiz_submissions);
 
-        // Display raw JSON in the <pre> tag (for debugging)
-        // document.getElementById("output").innerText = JSON.stringify(data, null, 2);
-
-        // Ensure the data is an array before processing
-        const students = Array.isArray(data) ? data : Object.values(data);
-
-        // Get the output area and clear previous content
-        const outputArea = document.getElementById("outputArea");
+        const outputArea = document.getElementById("outputStudentInfo");
         outputArea.innerHTML = ""; 
         outputArea.classList.add("grid-container");
 
-        // Loop through student data and create individual containers
         students.forEach(student => {
             const studentDiv = document.createElement("div");
             studentDiv.classList.add("student-box");
@@ -152,14 +46,41 @@ async function fetchProcessedData() {
 
     } catch (error) {
         console.error("Error fetching processed data:", error);
-        document.getElementById("outputArea").innerHTML = `<p style="color: red;">Failed to fetch data</p>`;
+        document.getElementById("outputStudentInfo").innerHTML = `<p style="color: red;">Failed to fetch data</p>`;
     }
 }
 
-// Attach event listener to the "View Processed Data" button
-document.getElementById("view-data-btn").addEventListener("click", fetchProcessedData);
+document.getElementById("view-data-btn").addEventListener("click", async function () {
+    console.log("Fetching processed data...");  // Debugging
+    try {
+        const response = await fetch("http://localhost:6969/api/processed-data");
+        console.log("Response received:", response);  // Debugging
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("process-data-btn").addEventListener("click", processData);
-    document.getElementById("view-data-btn").addEventListener("click", fetchProcessedData);
+        const data = await response.json();
+        console.log("Processed Data:", data);  // Debugging
+
+        const outputArea = document.getElementById("outputArea");
+        outputArea.innerHTML = JSON.stringify(data, null, 2);
+    } catch (error) {
+        console.error("Error fetching processed data:", error);
+        document.getElementById("outputArea").innerHTML = `<p style="color: red;">Failed to fetch data</p>`;
+    }
+});
+
+
+document.getElementById('rubricButton').addEventListener('click', function() {
+    document.getElementById('rubric-container').style.display = 'block';
+    document.getElementById('file-container').style.display = 'none';
+});
+
+document.getElementById('fileButton').addEventListener('click', function() {
+    document.getElementById('rubric-container').style.display = 'none';
+    document.getElementById('file-container').style.display = 'block';
+});
+
+document.getElementById('ai-button').addEventListener('click', function () {
+    let rubric = document.getElementById('textbox').value;
+    const outputArea = document.getElementById("outputArea");
+    outputArea.innerHTML = `<p>Rubric Text: ${rubric}</p>`;
 });
