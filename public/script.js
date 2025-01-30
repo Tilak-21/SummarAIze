@@ -77,6 +77,10 @@ document.getElementById('rubricButton').addEventListener('click', function() {
     document.getElementById('file-container').style.display = 'none';
 });
 
+document.getElementById('view-data-btn').addEventListener('click', function () {
+    document.getElementById('output').style.display = 'block';
+});
+
 
 
 document.getElementById('ai-button').addEventListener('click', function () {
