@@ -67,17 +67,17 @@ document.getElementById("view-data-btn").addEventListener("click", async functio
         document.getElementById("outputArea").innerHTML = `<p style="color: red;">Failed to fetch data</p>`;
     }
 });
-
+document.getElementById('fileButton').addEventListener('click', function() {
+    document.getElementById('rubric-container').style.display = 'none';
+    document.getElementById('file-container').style.display = 'block';
+});
 
 document.getElementById('rubricButton').addEventListener('click', function() {
     document.getElementById('rubric-container').style.display = 'block';
     document.getElementById('file-container').style.display = 'none';
 });
 
-document.getElementById('fileButton').addEventListener('click', function() {
-    document.getElementById('rubric-container').style.display = 'none';
-    document.getElementById('file-container').style.display = 'block';
-});
+
 
 document.getElementById('ai-button').addEventListener('click', function () {
     let rubric = document.getElementById('textbox').value;
