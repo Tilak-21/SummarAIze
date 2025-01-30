@@ -11,15 +11,13 @@
     <div class="flex-container main-container">
 
         <div class="option-buttons">
-            <button id="fileButton">Quiz Data Upload</button>
+            <button id="fileButton">Retrieve Data</button>
             <button id="rubricButton">AI Prompt</button>
             
         </div>
-      
-       
 
-        <div class="prompt-box" id="file-container" style="display: none;">
-            <h2 class="upload-form-title">File Upload</h2>
+        <div class="prompt-box" id="file-container">
+            <h2 class="upload-form-title">Canvas Data Retrieval</h2>
 
             <button id="process-data-btn">Process Data</button>
             <button id="view-data-btn">View Processed Data</button>
@@ -32,10 +30,11 @@
             
         </div>
         
-        <div class="prompt-box" id="rubric-container">
+        <div class="prompt-box" id="rubric-container" style="display: none;">
             <h2>summarAIze</h2>
           <textarea id="textbox" placeholder="Type here..."></textarea>
         <button id="ai-button">Enter</button>
+        <div id="ai-enter-button"></div>
       </div>
 
         

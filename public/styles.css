@@ -22,13 +22,13 @@ body {
 }
 
 /* Container for files, arranged in a column layout */
-#file-container {
+/* #file-container {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
     grid-gap: 10px;
-}
+} */
 
 /* Form styling for uploading files */
 .upload-form {
@@ -47,7 +47,7 @@ body {
 
 /* Title styling for the upload form */
 .upload-form-title {
-  margin: 5px 0;
+  margin: 20px 0;
 }
 
 .prompt-box {

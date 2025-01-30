@@ -85,6 +85,6 @@ document.getElementById('view-data-btn').addEventListener('click', function () {
 
 document.getElementById('ai-button').addEventListener('click', function () {
     let rubric = document.getElementById('textbox').value;
-    const outputArea = document.getElementById("outputArea");
+    const outputArea = document.getElementById("ai-enter-button");
     outputArea.innerHTML = `<p>Rubric Text: ${rubric}</p>`;
 });
